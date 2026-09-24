@@ -1,8 +1,20 @@
 ﻿@page "/"
+@using TodoWarmup.Models;
 
 <PageTitle>Todo - Warmup</PageTitle>
 <ul>
-    <li>Köpa bröd</li>
-    <li>Beda sängen</li>
-    <li>Tvätta kläder</li>
+  @foreach (var t in todos)
+  {
+    <li>[@(t.IsDone ? "x" : " ")] @t.Text</li>
+  }
 </ul>
+
+
+@code {
+  private List<TodoItem> todos =
+    [
+  new TodoItem{Id = Guid.NewGuid(), Text = "Köpa bröd", IsDone = false},
+  new TodoItem{Id = Guid.NewGuid(), Text = "Bädda sängen", IsDone = false},
+  new TodoItem{Id = Guid.NewGuid(), Text = "Torka bordet", IsDone = false}
+    ];
+}

@@ -3,12 +3,7 @@
 @using TodoWarmup.Components;
 
 <PageTitle>Todo - Warmup</PageTitle>
-<ul>
-  @foreach (var t in todos)
-  {
-    <Item Todo="t" />
-  }
-</ul>
+<Items Todos="todos" />
 
 
 @code {
@@ -18,6 +13,4 @@
   new TodoItem{Id = Guid.NewGuid(), Text = "Bädda sängen", IsDone = false},
   new TodoItem{Id = Guid.NewGuid(), Text = "Torka bordet", IsDone = false}
     ];
-  [Parameter]
-  public TodoItem Todo { get; set; } = default!;
 }

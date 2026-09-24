@@ -1,0 +1,13 @@
+@using TodoWarmup.Models
+<ul>
+  @foreach (var t in Todos)
+  {
+    <Item Todo="t" />
+  }
+</ul>
+
+@code
+{
+  [Parameter]
+  public List<TodoItem> Todos { get; set; } = default!;
+}

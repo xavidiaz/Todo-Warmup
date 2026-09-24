@@ -1,0 +1,19 @@
+<form @onsubmit="Add">
+  <input @bind="NewText" />
+  <button type="submit">Lägg till</button>
+</form>
+
+@code
+{
+  private string NewText = "";
+
+  [Parameter]
+  public EventCallback<string> OnAdd { get; set; }
+
+  private async Task Add()
+  {
+    if (string.IsNullOrWhiteSpace(NewText)) return;
+    await OnAdd.InvokeAsync(NewText);
+    NewText = "";
+  }
+}

@@ -3,6 +3,7 @@
 @using TodoWarmup.Components;
 
 <PageTitle>Todo - Warmup</PageTitle>
+<Input OnAdd="AddTodo" />
 <Items Todos="todos" />
 
 
@@ -13,4 +14,8 @@
   new TodoItem{Id = Guid.NewGuid(), Text = "Bädda sängen", IsDone = false},
   new TodoItem{Id = Guid.NewGuid(), Text = "Torka bordet", IsDone = false}
     ];
+  private void AddTodo(string text)
+  {
+    todos.Add(new TodoItem { Id = Guid.NewGuid(), Text = text });
+  }
 }

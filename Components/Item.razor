@@ -1,0 +1,9 @@
+@using TodoWarmup.Models;
+
+<li>[@(Todo.IsDone ? "x" : " ")] @Todo.Text</li>
+
+@code
+{
+  [Parameter]
+  public TodoItem Todo { get; set; } = default!;
+}

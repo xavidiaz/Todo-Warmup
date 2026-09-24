@@ -74,8 +74,31 @@ Blazor / .NET 10 (WebAssembly), samma stil som Maskinpark-labbet framöver.
 
 ## Var ligger jag
 
-- Ingen GitHub Project/issue-koppling ännu i den här mini-övningen (till
-  skillnad från MovieApi-Refactor) — vi kör muntligt "nästa" tills vidare.
+- GitHub Project "TodoWarmup" (projekt-nr `11`, ägare `xavidiaz`) är kopplat
+  till repot och används för issues/sub-issues per fas.
 - Fasplan finns i `README.md`.
+
+## GitHub Project — issues & sub-issues (process)
+
+- **Skapa issue:** `gh issue create --title "..." --body "..."`
+- **Skapa sub-issue:** `gh issue create --parent <N> --title "..." --body "..."`
+  (native `--parent`-flagga sedan gh 2.94, ingen extension behövs).
+- Projektet har två inbyggda auto-add-workflows (⋯ → Workflows i projektvyn):
+  **"Auto-add to project"** (filter `is:issue is:open` på repot) och
+  **"Auto-add sub-issues to project"**. Båda är påslagna.
+- **Kända begränsningar (verifierat via GraphQL, se sessionshistorik):**
+  - Auto-add för sub-issues är opålitligt — asynkron eftersläpning, ibland
+    triggar det aldrig för issues skapade via `gh issue create --parent`.
+  - `gh project item-add --url <issue-url>` returnerar ett item-ID som ser
+    giltigt ut, men när parent-issuet redan är ett item i projektet
+    **hamnar sub-issuet inte i projektets `items()`-lista/räkning** trots att
+    en `ProjectV2Item`-nod faktiskt skapas (bekräftat med rå GraphQL-query
+    mot noden). Lita alltså inte på `item-add` för sub-issues.
+  - **Enda vägen som pålitligt fungerat:** i projekt-UI:t, på parent-raden,
+    expandera "N sub-issues not in this project" → klicka
+    **"Add all to project"**.
+- `gh project`-kommandon kräver `project`-scope:
+  `gh auth refresh -s project --hostname github.com` (interaktivt — jag kör
+  det själv per gyllene regel).
 
 Vid sessionsstart: fråga vilken fas/steg vi är på om det är oklart.

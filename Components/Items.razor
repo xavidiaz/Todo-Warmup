@@ -2,7 +2,7 @@
 <ul>
   @foreach (var t in Todos)
   {
-    <Item Todo="t" />
+    <Item Todo="t" OnDelete="OnDelete" />
   }
 </ul>
 
@@ -10,4 +10,6 @@
 {
   [Parameter]
   public List<TodoItem> Todos { get; set; } = default!;
+  [Parameter]
+  public EventCallback<Guid> OnDelete { get; set; }
 }

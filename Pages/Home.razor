@@ -4,7 +4,7 @@
 
 <PageTitle>Todo - Warmup</PageTitle>
 <Input OnAdd="AddTodo" />
-<Items Todos="todos" />
+<Items Todos="todos" OnDelete="DeleteTodo" />
 
 
 @code {
@@ -18,4 +18,9 @@
   {
     todos.Add(new TodoItem { Id = Guid.NewGuid(), Text = text });
   }
+  private void DeleteTodo(Guid id)
+  {
+    todos.RemoveAll(t => t.Id == id); ;
+  }
+
 }
